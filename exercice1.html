@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="jquery-3.2.1.js"></script>
+    <title>Exercice 4</title>
+  </head>
+  <body>
+    <form>
+      <select id="shifumi" size="1">
+        <option>pierre</option>
+        <option>feuille</option>
+        <option>ciseaux</option>
+      </select>
+      <button type="button" name="button" id="submit">« Shifumi ! »</button>
+    </form>
+    <form>
+    <label for="victoire">victoire : </label><input type="text" onfocus="changeBorderFocus(id);" onblur="changeBorderblur(id);" name="nom" value="" id="victory" />
+    <label for="defaite">Défaite : </label><input type="text" onfocus="changeBorderFocus(id);" onblur="changeBorderblur(id);" name="prenom" value="" id="defait" />
+    <label for="pourcentvictoire">Pourcentage de victoire : </label><input type="text" onfocus="changeBorderFocus(id);" onblur="changeBorderblur(id);" name="nom" value="" id="victoryPourcent" />
+  </form>
+    <script>
+    $(function() {
+      var choiceComputer=['pierre','feuille','ciseaux'];
+      var counterVictory=0,counterDefait=0,counterParty=0;
+      console.log('test');
+      $('#submit').click(function(){
+        console.log('test');
+        var randomNumber = Math.floor(Math.random() * (3));
+        var choiceUser=$('#shifumi').val();
+        counterParty++
+        console.log(choiceUser);
+        if(choiceUser=='pierre'){
+          console.log(choiceComputer[randomNumber]);
+        switch (randomNumber) {
+            case 0:
+              alert('ordinateur : '+ choiceComputer[randomNumber] + '\n' + 'Utilisateur : ' + choiceUser + '\n' + 'egalité');
+              break;
+            case 1:
+              alert('ordinateur : '+ choiceComputer[randomNumber] + '\n' + 'Utilisateur : ' + choiceUser + '\n' + 'Perdu');
+              counterDefait++;
+              break;
+            case 2:
+              alert('ordinateur : '+ choiceComputer[randomNumber] + '\n' + 'Utilisateur : ' + choiceUser + '\n' + 'Gagné');
+              counterVictory++;
+              break;
+          }
+        }else if (choiceUser=='feuille') {
+          switch (randomNumber) {
+            case 0:
+              alert('ordinateur : ' + choiceComputer[randomNumber] + '\n' + 'Utilisateur : ' + choiceUser + '\n' + 'gagné');
+              counterVictory++;
+              break;
+            case 1:
+              alert('ordinateur : ' + choiceComputer[randomNumber] + '\n' + 'Utilisateur : ' + choiceUser + '\n' + 'egalité');
+              break;
+            case 2:
+              alert('ordinateur : ' + choiceComputer[randomNumber] + '\n' + 'Utilisateur : ' + choiceUser  + '\n' + 'perdu');
+              counterDefait++;
+              break;
+            }
+        }else if(choiceUser=='ciseaux'){
+          switch (randomNumber) {
+            case 0:
+              alert('ordinateur : '+ choiceComputer[randomNumber] + '\n' + 'Utilisateur : ' + choiceUser + '\n' + 'perdu');
+              counterDefait++;
+              break;
+            case 1:
+              alert('ordinateur : '+ choiceComputer[randomNumber] + '\n' + 'Utilisateur : ' + choiceUser + '\n' + 'gagné');
+              counterVictory++;
+              break;
+            case 2:
+              alert('ordinateur : '+ choiceComputer[randomNumber] + '\n' + 'Utilisateur : ' + choiceUser + '\n' + 'egalité');
+              break;
+            }
+          }
+          $('#defait').val(counterDefait);
+          $('#victory').val(counterVictory);
+          var pourcentVictory=(counterVictory/counterParty *100).toFixed(2) ;
+          $('#victoryPourcent').val(pourcentVictory+'%');
+        });
+      });
+    </script>
+  </body>
+</html>
